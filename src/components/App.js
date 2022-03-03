@@ -1,11 +1,15 @@
 import Breadcrumb from './Breadcrumb.js'
 import Nodes from './Nodes.js'
+import ImageView from './ImageView.js'
+import Loading from './Loading.js'
 
 export default function App($app) {
   this.state = {
     isRoot: false,
     nodes: [],
-    depth: []
+    depth: [],
+    selectedFilePath: null,
+    isLoading: false
   }
 
   const breadcrumb = new Breadcrumb({
@@ -21,6 +25,16 @@ export default function App($app) {
     }
   })
   
+  const imageView = new ImageView({
+    $app,
+    initialState: this.state.selectedFilePath
+  })
+
+  const loading = new Loading({
+    $app,
+    initialState: this.state.isLoading
+  })
+
   this.setState = (nextState) => {
     this.state = nextState
     breadcrumb.setState(this.state.depth)
@@ -28,17 +42,21 @@ export default function App($app) {
       isRoot: this.state.isRoot,
       nodes: this.state.nodes
     })
+    imageView.setState(this.state.selectedFilePath)
+    loading.setState(this.state.isLoading)
   }
 
   const init = () => {
     const nextState = {
       isRoot: false,
       nodes: [],
-      depth: []
+      depth: [],
+      selectedFilePath: null,
+      isLoading: false
     }
     
     this.setState(nextState);
   }
 
-  init()
+  //init()
 }

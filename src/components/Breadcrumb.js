@@ -13,4 +13,6 @@ export default function Breadcrumb({ $app, initialState }) {
   this.render = () => {
     console.log(`Breadcrumb render`)
   }
+
+  this.render()
 }
