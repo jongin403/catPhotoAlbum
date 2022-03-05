@@ -10,7 +10,9 @@ export default function Nodes({ $app, initialState }) {
   }
 
   this.render = () => {
-    console.log(`Nodes render`)
+    this.$target.innerHTML = this.state.nodes.map(node => 
+      `<li>${node.name}</li>`
+    )    
   }
 
   this.render()
