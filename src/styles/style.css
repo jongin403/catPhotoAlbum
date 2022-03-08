@@ -18,6 +18,11 @@ body {
   height: 600px;
 }
 
+.app ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .Nodes {
   display: flex;
   flex-direction: row;
