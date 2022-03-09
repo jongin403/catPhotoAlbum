@@ -22,6 +22,12 @@ export default function ImageView({ $app, initialState, modalClose }) {
         this.modalClose()
       }
     })
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === "Escape") {
+        this.modalClose()
+      }
+    })
   }
 
   this.render = () => {
