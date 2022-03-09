@@ -10,6 +10,7 @@ export default function Nodes({ $app, initialState, onClick, onBackClick }) {
   }
 
   this.onClick = onClick
+  this.onBackClick = onBackClick
 
   this.render = () => {
     if (this.state.nodes) {
@@ -25,8 +26,10 @@ export default function Nodes({ $app, initialState, onClick, onBackClick }) {
       }).join('')
 
       this.$target.innerHTML = !this.state.isRoot ? `<div class="Node"><img src="/assets/prev.png"></div>${nodesTemplate}` : nodesTemplate
-    }  
+    }
   }
+
+  this.render()
 
   this.$target.addEventListener('click', (e) => {
     const $node = e.target.closest('.Node')
@@ -46,6 +49,4 @@ export default function Nodes({ $app, initialState, onClick, onBackClick }) {
       }
     }
   })
-
-  this.render()
 }
