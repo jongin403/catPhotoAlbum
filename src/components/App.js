@@ -23,6 +23,7 @@ export default function App($app) {
         this.setState({
           ...this.state,
           depth: [],
+          isRoot: true,
           nodes: cache.rootNodes
         })
         return
@@ -50,13 +51,13 @@ export default function App($app) {
       try {
         this.setState({
           ...this.state,
-          isRoot: false,
           isLoading: true          
         })
         if (node.type === 'DIRECTORY') {
           if (cache[node.id]) {
             this.setState({
                   ...this.state,
+                  isRoot: false,
                   depth: [...this.state.depth, node],
                   nodes: cache[node.id],
                   isLoading: false
@@ -65,6 +66,7 @@ export default function App($app) {
             const nextNodes = await request(node.id)
             this.setState({
               ...this.state,
+              isRoot: false,
               depth: [...this.state.depth, node],
               nodes: nextNodes,
               isLoading: false
@@ -75,6 +77,7 @@ export default function App($app) {
         } else if (node.type === 'FILE') {
           this.setState({
             ...this.state,
+            isRoot: false,
             selectedFilePath: node.filePath,
             isLoading: false
           })
@@ -144,6 +147,7 @@ export default function App($app) {
     try {
       this.setState({
         ...this.state,
+        isRoot: true,
         isLoading: true
       })
       const rootNodes = await request()
